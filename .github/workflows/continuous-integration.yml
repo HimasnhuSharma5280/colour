@@ -50,7 +50,7 @@ jobs:
         sed -i.bak 's/matplotlib = { version = "\*"/matplotlib = { version = "^3.1"/g' pyproject.toml
     - name: Install Package Dependencies
       run: |
-        poetry install --extras "optional plotting"
+        poetry install -vvv --extras "optional plotting"
         source $(poetry env info -p)/bin/activate
         python -c "import imageio;imageio.plugins.freeimage.download()"
     - name: Ubuntu - Install OpenImageIO
@@ -111,7 +111,7 @@ jobs:
       shell: cmd
     - name: Install Package Dependencies
       run: |
-        call poetry install --extras "optional plotting"
+        call poetry install -vvv --extras "optional plotting"
         FOR /F %%a IN ('poetry env info -p') DO SET CI_VIRTUAL_ENVIRONMENT=%%a
         echo ::set-env name=CI_VIRTUAL_ENVIRONMENT::%CI_VIRTUAL_ENVIRONMENT%
         call %CI_VIRTUAL_ENVIRONMENT%\scripts\activate
